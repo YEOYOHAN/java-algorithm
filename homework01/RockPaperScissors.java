@@ -24,7 +24,7 @@ public class RockPaperScissors {
         case 3: System.out.println("보");
         	switch(me) {
         	case "가위": System.out.println("이겼습니다."); break;
-        	case "바위": System.out.println("겼습니다."); break;
+        	case "바위": System.out.println("졌습니다."); break;
         	case "보": System.out.println("비겼습니다."); break;
         	}
         }
