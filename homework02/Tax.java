@@ -13,15 +13,20 @@ import java.util.Scanner;
 
 public class Tax {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		String name = "";
-		int income = 0;
-		double tax = 0.097;
-		System.out.print("이름을 입력해주세요: ");
-		name = scanner.next();
-		System.out.print("연봉을 입력해주세요: ");		
-		income = scanner.nextInt();
-		System.out.println("세금은 " + Math.round(income*tax) + "입니다.");
+		Scanner scan = new Scanner(System.in);
 		
+		while(true) {
+			String name = "";
+			int money = 0;
+			double tax = 9.7;
+			System.out.println("이름을 입력해주세요");
+			name = scan.next();
+			System.out.println("연봉을 입력해주세요. (만원단위)");
+			money = scan.nextInt();
+			double out = money * tax /100;
+			System.out.println(out);
+			System.out.printf("연봉 %d만원을 받으시는 %s님께서 납부할 세금은 %.1f만원입니다.\n", money, name, out);
+			
+		}
 	}
 }

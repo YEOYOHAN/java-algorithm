@@ -18,44 +18,46 @@ import java.util.Scanner;
 public class ArithmeticCalculator {
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		
-		while(true) {
-			System.out.print("1.더하기, 2.빼기, 3.곱하기, 4.나누기중 선택해주세요 0은 종료: ");
-			int Calculator = scanner.nextInt();
-			switch(Calculator) {
-			case 0:
-				System.out.println("사용해주셔서 감사합니다.");
-				return;
-			case 1:
-				System.out.print("처음수를 입력해주세요: ");
-				int sum = scanner.nextInt();
-				System.out.print("두번째수를 입력해주세요: ");
-				int sum2 = scanner.nextInt();
-				System.out.println("결과는 " + sum + "+" + sum2 + "=" + (sum+sum2) + " 입니다."); break;
-			case 2:
-				System.out.print("처음수를 입력해주세요: ");
-				int Minus = scanner.nextInt();
-				System.out.print("두번째수를 입력해주세요: ");
-				int Minus2 = scanner.nextInt();
-				System.out.println("결과는 " + Minus + "-" + Minus2 + "=" + (Minus-Minus2) + " 입니다."); break;
-			case 3:
-				System.out.print("처음수를 입력해주세요: ");
-				int Mult = scanner.nextInt();
-				System.out.print("두번째수를 입력해주세요: ");
-				int Mult2 = scanner.nextInt();
-				System.out.println("결과는 " + Mult + "*" + Mult2 + "=" + (Mult*Mult2) + " 입니다."); break;
-			case 4:
-				System.out.print("처음수를 입력해주세요: ");
-				int div = scanner.nextInt();
-				System.out.print("두번째수를 입력해주세요: ");
-				int div2 = scanner.nextInt();
-				int div3 = div % div2;
-				System.out.println("결과는 " + div + "/" + div2 + "=" + (div/div2) + "["+div3+"]" + " 입니다."); break;
-				default : break;
+		Scanner scan = new Scanner(System.in);
+		String op ="" , input = "";
+		int result = 0;
+		int[] num;
+		num = new int[4];
+		//입력 
+		System.out.println("계산기");
+		System.out.print("연산선택>");
+		op = scan.next();
+		for(int i = 0 ;i <num.length-1; i++) {
+			if(i < 2) {
+				System.out.printf("숫자입력 %d>", i+1);
+				num[i] = scan.nextInt();
 			}
+			else {
+				switch(op) {
+				case "+": num[i] = num[i-2] + num[i-1]; break;
+				case "-": num[i] = num[i-2] - num[i-1]; break;
+				case "*": num[i] = num[i-2] * num[i-1]; break;
+				case "/": num[i] = num[i-2] / num[i-1]; break;
+				
+				}
+				
+			}
+			
+			
+			
+		}
+		if(op.equals("/")) {
+			num[num.length-1] = num[0] % num[1];
+			
+		}
+		
+		switch(op) {
+		case "/": System.out.printf("%d %s %d = %d [%d]" , num[0], op, num[1], num[2], num[3] ); break;
+		default:System.out.printf("%d %s %d = %d"  , num[0], op, num[1] , num[2] ); break;
+		
 		}
 
+		
 	}
 
 }

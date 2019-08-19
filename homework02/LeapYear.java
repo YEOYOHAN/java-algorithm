@@ -18,12 +18,28 @@ import java.util.Scanner;
 
 public class LeapYear {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("년도를 입력하세요: ");
-		int year = scanner.nextInt();
-		if(year %4 ==0 ) {
-			
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
+		while(true) {
+			int year = 0, year4 = 0, year100 = 0, year400 = 0;
+			System.out.println("알고싶은 년도를 입력해주세요.(숫자 4자리)");
+			year = scan.nextInt();
+			String yearEn = "";
+			year4 = year % 4;
+			year100 = year % 100;
+			year400 = year % 400;
+			if(year4 != 0) {
+				yearEn = "평년";
+			}else if(year100 == 0 && year400 == 0) {
+				yearEn = "윤년";
+			}else if(year100 == 0) {
+				yearEn = "윤년";
+			}else if(year100 != 0) {
+				yearEn = "윤년";
+			}else {
+				System.out.println("잘못된 입력입니다.");
+				
+			}System.out.printf("%s은 %s 입니다.\n", year, yearEn);
 		}
 	}
-
 }

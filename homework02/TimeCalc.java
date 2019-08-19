@@ -18,7 +18,7 @@ public class TimeCalc {
         time = scanner.nextInt();
         hour = min / 60;
         min = time / 60;
-        sec = time / 60;
+        sec = time % 60;
         System.out.printf("%d시 %d분 %d초", hour, min, sec);
     }
 }
