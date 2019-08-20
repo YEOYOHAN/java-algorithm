@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Engine {
 
-	@SuppressWarnings({ "null", "unused" })
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Student student = new Student();
@@ -33,35 +32,61 @@ public class Engine {
 				break;
 			
 			case 3 : System.out.println("ScoreCalc");
-				/**int in = 0;
-				System.out.print("더하시려는 숫자를 입력하세요(종료는 -1) \n>");
-				in = scanner.nextInt();
-				String result2 = student.getScoreCalc(in);
+				int count = 0;
+				int[] numbers = null;
+				while(true) {
+				System.out.println("숫자입력 (-1종료)");
+				int sc = scanner.nextInt();
+				if(sc == -1) {
+					break;
+				}
+				int[] temp = new int[count];
+				for(int i = 0; i < count ; i++) {
+					temp[i] = numbers[i];
+					
+				}
+				count ++;
+				numbers = new int[count];
+				for(int i = 0 ;i <count-1 ; i++) {
+					numbers[i] = temp[i];
+					
+				}
+				numbers[count-1] = sc;
+				}
+				String result2 = student.getScoreCalc(numbers);
 				System.out.println(result2);
-				*/
-				break;//가동 불가
+				break;
 			
 			case 4 : System.out.println("ReportCard");
-				/**System.out.println("학생의 이름을 입력해주세요.");
+				int[] scores = new int[5];
+				System.out.println("이름>");
 				name = scanner.next();
-				System.out.println("학생의 점수를 입력해주세요.");
-				String[] subjects = {"국어", "영어", "수학"};
-				for(int i = 0 ;i < 3; i++) {
-					System.out.print("점수입력>");
-					int[] scores = null;
-					scores[i] = scanner.nextInt();
-				System.out.printf(" %s 점수를 입력하세요: ", subjects[i]);
-				int scores1 = scanner.nextInt();
-				String result3 = student.getReportCard(name, subjects, scores1);
+				System.out.println("점수입력(국 영 수)");
+				for(int i = 0 ;i <3; i++) {
+				scores[i] = scanner.nextInt();
+				}
+				String result3 = student.getReportCard(name, scores);
 				System.out.println(result3);
-				 */
-			break;//가동 불가
+				break;
 			
 			case 5 : System.out.println("Ranking");
-				break;//모르겠음
+				double[] records = new double[3];
+				System.out.println("기록측정");
+				System.out.print("시간입력>");
+				for(int i = 0; i < 3; i++) {
+					records[i] = scanner.nextDouble();
+				}
+				String result4 = student.Ranking(records);
+				System.out.println(result4);
+				break;
 				
 			case 6 : System.out.println("PassOrFail");
-				break;//모르겠음
+				scores = new int[5];
+				System.out.print("이름>");
+				name = scanner.next();
+				System.out.print("점수입력");
+				String resuli5 = student.PassOrFail(name, scores);
+				System.out.println(resuli5);
 				
 			case 7 : System.out.println("MonthEndDay");
 				System.out.print("월을 입력하세요 1~12");
@@ -97,10 +122,40 @@ public class Engine {
 				String blood = scanner.next();
 				String result9 = student.Join(id, pw, name, birth, blood, height, weight);
 				System.out.println(result9);
+				
+			case 10 : System.out.println("HowMuch");
+				int price = 0, num = 0;
+				System.out.print("얼마에요?");
+				price = scanner.nextInt();
+				System.out.println("몇개드릴까요?");
+				num = scanner.nextInt();
+				String result10 = student.HowMuch(price, num);
+				System.out.println(result10);
+				break;
+				
+			case 11 : System.out.println("BMI");
+				System.out.println("이름을 입력해주세요");
+				name = scanner.next();
+				System.out.print("키를 입력하세요: ");
+				height = scanner.nextDouble();
+				System.out.print("몸무게를 입력하세요: ");
+				weight = scanner.nextDouble();
+				String result11 = student.getBmi(name, height, weight);
+				System.out.println(result11);
+				break;
+				
+			case 12 : System.out.println("AC");
+				String op="";
+				System.out.println("연산기");
+				System.out.print("연산 입력>");
+				int n1 = scanner.nextInt();
+				op = scanner.next();
+				int n2 = scanner.nextInt();
+				String result12 = student.getAc(op, n1, n2);
+				System.out.println(result12);
+				break;
 			}
 		}
 
 	}
-
-
 }

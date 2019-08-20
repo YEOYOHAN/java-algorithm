@@ -14,68 +14,81 @@ public class Student {
 		String result1 = "";
 		double tax = 9.7;
 		double out = money * tax /100;
-		result1 = String.format("연봉 %d만원을 받으시는 %s님께서 납부할 세금은 %.1f만원입니다.\n", money, name, out);
+		result1 = String.format(" %s님께서 납부할 세금은 %.1f만원입니다.\n", name, out);
 		return result1;
 	}
 	
-	public String getScoreCalc(int in) {
-		String result2 = "";
-		int count = 0;
-		int[] num = null;
-		while(true) {
-			if(in == -1) {
-				break;
-			}
-			int[] temp = new int[count];
-			for(int i = 0 ;i < count ; i++) {
-				temp[i] = num[i];
-			}
-			count++;
-			num = new int[count];
-			for(int i = 0 ;i < count-1 ; i++) {
-				num[i]= temp[i];
-			}
-			num[count-1] = in;
+	public String getScoreCalc(int[] numbers) {
+		int sum = 0;
+		String result2 ="";
+		for(int i = 0 ; i< numbers.length; i++) {
+			sum += numbers[i] ;
 		}
-		int sum = 0, avg = 0;
-		for(int i = 0;i < count ; i++) {
-			sum += num[i];
+		int avg = sum / numbers.length;
+		for(int i = 0 ; i < numbers.length; i++) {
+			if(i == numbers.length-1) {
+				 result2 += numbers[i] + "=";
+			}else {
+				result2 += numbers[i] + "+";
+			}
 		}
-		avg = sum / count;
-		result2 = String.format("%d 이고 평균은 %d입니다." ,sum , avg);
+		result2 += String.format("%d이고 평균은 %d입니다.", sum , avg);
 		return result2;
 		}
 	
-	public String getReportCard(String name, String[] subjects, int scores) {
-		String result3 = "";
-		while(true) {
-			int sum = 0;
-			double average = 0;
-			String pass = "";
-			int[] scores1 = new int[3];
-			for(int i=0; i < subjects.length; i++) {
-			}
-			for(int i=0; i< scores1.length; i++) {
-				sum += scores1[i];
-			}
-			average = Math.floor(sum / (double)scores1.length);
-		
-			if(average >= 90) {
-				pass = "장학생";
-			}else if(average >= 70) {
-				pass = "합격";
-			}else {
-				pass = "불합격";
-			}
-		
-			result3 = String.format("학생        국어        영어        수학        총점        평균        합격여부");
-			result3 = String.format("=================================================");
-			result3 = String.format("%s   %d      %d      %d      %d    %.0f     (%s)\n", name, scores1[0], scores1[1], scores1[2], sum, average, pass);
-			return result3;
+	public String getReportCard(String name , int[] scores) {
+		String result3 ="";
+		String pass = "";
+		for(int i = 0; i< 3; i++) {
+			scores[3] += scores[i];
 		}
+		scores[4] = scores[3] / 3;
+		if(scores[4] >= 90) {
+			pass = "장학생";
+		}else if( scores[4] >= 70 && scores[4] <90) {
+			pass = "합격";
+		}else {
+			pass = "불합격";
+		}
+		result3 = String.format("이름    국어    영어    수학    총점    평균    합격여부\n%s   %d   %d   %d   %d   %d   %s " , 
+				name,scores[0], scores[1],scores[2],scores[3],scores[4], pass);
+				
+		return result3;
 	}
-	public void Ranking() {}
-	public void PassOrFail() {}
+	public String Ranking(double[] records) {
+		String result4 ="";
+		for(int i = 0; i < records.length; i++) {
+			for(int j = 0 ; j < records.length -1; j++) {
+				if(records[j] > records[j+1]) {
+					double tempd = records[j];
+					records[j] = records[j+1];
+					records[j+1] = tempd;
+				}
+			}
+		}
+		for(int i = 0 ;i < 3; i++) {
+			 result4 += String.format("%d등 기록 : %.1f \n" , i+1, records[i] );
+		}
+		return result4;
+	}
+	public String PassOrFail(String name, int[] scores) {
+		String result5 = "";
+		for(int i = 0 ; i < 3; i++) {
+			scores[3] += scores[i];
+		}
+		String pass = "";
+		scores[4] = scores[3]/ 3;
+		if(scores[4] >= 90) {
+			pass = "장학생";
+		}else if(scores[4] >= 70 && scores[4] <90) {
+			pass = "합격";
+		}else {
+			pass = "불합격";
+		}
+		result5 = String.format("성명    국어    영어    수학    총점    평균    합격여부\n ========================================================\n%s   %d   %d   %d   %d   %d   %s ",
+				name, scores[0],scores[1],scores[2],scores[3],scores[4], pass);
+		return result5;
+	}
 	public String getMonthEndDay(int year) {
 		String result7 = "";
 		int days = 0;
@@ -118,8 +131,50 @@ public class Student {
 				id, pw, name, birth, ((isAdult)? "성인" : "미성년"), height, weightIs, blood );
 		return result9;
 	}
-	public void HowMuch() {}
-	public void getBmi() {}
-	public void getAc() {}
+	public String HowMuch(int price , int num) {
+		String result10 ="";
+		int pay = price * num;
+		int fPay = pay - (pay/10);
+		result10 = String.format("총 %d원입니다. 할인되어서 %d입니다.", pay , fPay);
+		return result10;
+	}
+	public String getBmi(String name, double height, double weight) {
+		String result11 = "";
+		double bmi = weight / (height * height);
+		String bmi2 = "";
+		
+		if(bmi > 30.0) {
+			bmi2 = "고도비만";
+		}else if(bmi > 25.0) {
+			bmi2 = "비만";
+		}else if(bmi > 23.0) {
+			bmi2 = "과체중";
+		}else if(bmi > 18.5) {
+			bmi2 = "정상";
+		}else {
+			bmi2 = "저체중";
+		}
+		result11 = String.format("%s님의 BMI는 %s 입니다.", name, bmi2);
+		return result11;
+	}
+	public String getAc(String op , int n1, int n2) {
+		String result12 = "";
+		int numResult = 0;
+		int rest = 0;
+		switch(op) {
+		case "+":
+			numResult = n1 + n2;
+			break;
+		case "-": numResult = n1 - n2;break;
+		case "*": numResult = n1 * n2; break;
+		case "/":numResult = n1 / n2; rest = numResult = n1%n2; break;
+		}
+		if(op.equals("/")) {
+			result12 = String.format("%d %s %d = %d[%d]", n1,op ,n2, numResult, rest);
+		}else {
+			result12 = String.format("%d %s %d = %d", n1,op ,n2, numResult);
+		}
+		return result12;
+	}
 
 }
