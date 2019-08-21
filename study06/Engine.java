@@ -1,6 +1,8 @@
-package study05;
+package study06;
 
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Engine {
 
@@ -40,8 +42,8 @@ public class Engine {
 				member.setSalary(scanner.nextInt());
 				break;
 				
-			case 2 : 
-				System.out.println(member.toString());
+			case 2 :
+				JOptionPane.showMessageDialog(null, "2.마이페이지\n"+member.toString());
 				break;
 				
 			case 3 :
